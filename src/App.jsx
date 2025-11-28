@@ -1063,6 +1063,7 @@ function App() {
         >
           <motion.p
             whileHover={{ scale: 1.02 }}
+            className="mb-2"
           >
             © 2024 G. Built with{' '}
             <motion.span
@@ -1072,7 +1073,7 @@ function App() {
             >
               ❤️
             </motion.span>
-            {' '}and React
+            {' '}React, Tailwind CSS & Framer Motion
           </motion.p>
         </motion.footer>
       </motion.div>
