@@ -1,20 +1,30 @@
-import { useCallback, useState } from "react";
-import Particles from "@tsparticles/react";
+import { useCallback, useState, useEffect } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
+import { useTheme } from "../context/ThemeContext";
 
 export default function ParticlesBackground() {
-  const [particlesEnabled] = useState(true);
+  const [init, setInit] = useState(false);
+  const { isDark } = useTheme();
 
-  const particlesInit = useCallback(async (engine) => {
-    await loadSlim(engine);
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
   }, []);
 
-  if (!particlesEnabled) return null;
+  const particlesLoaded = useCallback(async (container) => {
+    // Particles loaded
+  }, []);
+
+  if (!init) return null;
 
   return (
     <Particles
       id="tsparticles"
-      init={particlesInit}
+      particlesLoaded={particlesLoaded}
       options={{
         fullScreen: false,
         background: { 
@@ -38,7 +48,7 @@ export default function ParticlesBackground() {
               distance: 140,
               links: {
                 opacity: 0.5,
-                color: "#06b6d4",
+                color: isDark ? "#06b6d4" : "#0891b2",
               },
             },
             push: {
@@ -52,20 +62,22 @@ export default function ParticlesBackground() {
         },
         particles: {
           number: { 
-            value: 50,
+            value: 60,
             density: {
               enable: true,
               area: 800,
             },
           },
           color: {
-            value: ["#06b6d4", "#a855f7", "#ec4899"],
+            value: isDark 
+              ? ["#06b6d4", "#a855f7", "#ec4899"]
+              : ["#0891b2", "#7c3aed", "#db2777"],
           },
           shape: {
             type: "circle",
           },
           opacity: {
-            value: { min: 0.1, max: 0.5 },
+            value: { min: 0.1, max: isDark ? 0.5 : 0.4 },
             animation: {
               enable: true,
               speed: 1,
@@ -85,8 +97,8 @@ export default function ParticlesBackground() {
           links: {
             enable: true,
             distance: 150,
-            color: "#06b6d4",
-            opacity: 0.15,
+            color: isDark ? "#06b6d4" : "#0891b2",
+            opacity: isDark ? 0.15 : 0.1,
             width: 1,
           },
           move: { 
