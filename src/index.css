@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Base styles */
+body {
+  @apply bg-slate-950 text-slate-100 font-sans;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-950;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-600;
+}
+
+/* Selection color */
+::selection {
+  @apply bg-emerald-500/30 text-emerald-100;
+}
+
+/* Custom animations */
+@layer utilities {
+  /* Slow pulse animation */
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  /* Slow spin animation */
+  .animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Float animation */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Animation delay utilities */
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+}
+
+/* Glassmorphism base class */
+@layer components {
+  .glass {
+    @apply bg-slate-900/40 backdrop-blur-xl border border-slate-800/50;
+  }
+
+  .glass-hover {
+    @apply hover:bg-slate-900/60 hover:border-emerald-500/30;
+  }
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  @apply outline-none ring-2 ring-emerald-500 ring-offset-2 ring-offset-slate-950;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400;
+}
+
+/* Premium Avatar Effects */
+@layer utilities {
+  /* Light sweep animation */
+  .animate-light-sweep {
+    animation: light-sweep 7s ease-in-out infinite;
+  }
+
+  @keyframes light-sweep {
+    0%, 100% {
+      transform: translateX(-100%) translateY(-100%) rotate(45deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateX(100%) translateY(100%) rotate(45deg);
+      opacity: 0;
+    }
+  }
+
+  /* Hologram pulse animation */
+  .animate-hologram-pulse {
+    animation: hologram-pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes hologram-pulse {
+    0%, 100% {
+      opacity: 0.6;
+      filter: blur(20px);
+    }
+    50% {
+      opacity: 1;
+      filter: blur(25px);
+    }
+  }
+
+  /* Hologram glow layers */
+  .hologram-glow {
+    box-shadow:
+      0 0 20px rgba(6, 182, 212, 0.3),
+      0 0 40px rgba(6, 182, 212, 0.2),
+      0 0 60px rgba(168, 85, 247, 0.15),
+      0 0 80px rgba(168, 85, 247, 0.1),
+      inset 0 0 20px rgba(6, 182, 212, 0.1);
+  }
+
+  /* 3D transform style */
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  /* GPU acceleration for smooth animations */
+  .gpu-accelerate {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
+
