@@ -159,7 +159,7 @@ function PremiumAvatar() {
 
 export default function Hero() {
   return (
-    <section id="top" className="relative min-h-[90vh] flex items-center">
+    <section id="top" className="pt-0 relative min-h-[90vh]">
       {/* Animated background gradients */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-[120px] animate-pulse-slow" />
@@ -170,10 +170,15 @@ export default function Hero() {
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
 
-      <div className="relative w-full">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          {/* Text Content */}
-          <motion.div
+      {/* Main Hero Content - Single Flex Container */}
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="relative flex flex-col lg:flex-row items-center gap-12 lg:gap-16 min-h-[90vh] w-full"
+      >
+        {/* Text Content */}
+        <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -262,13 +267,12 @@ export default function Hero() {
               >
                 Get in Touch
               </button>
-            </motion.div>
           </motion.div>
+        </motion.div>
 
-          {/* Premium Avatar with interactive effects */}
-          <PremiumAvatar />
-        </div>
-      </div>
+        {/* Premium Avatar with interactive effects */}
+        <PremiumAvatar />
+      </motion.div>
     </section>
   );
 }

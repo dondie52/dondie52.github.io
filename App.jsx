@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import dpImage from "./dp.jpeg";
 
 const scrollToId = (id) => {
   const el = document.getElementById(id);
@@ -123,18 +124,16 @@ function Hero() {
       >
         <div className="flex-1 space-y-4">
           <p className="text-xs uppercase tracking-[0.2em] text-sky-400">
-            Frontend Developer • Information Systems
+          Business & IT Solutions Developer  • Computer Information Systems
           </p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
             I&apos;m <span className="text-sky-400">Georgy&nbsp;Moni</span>.
           </h1>
           <p className="text-lg text-slate-200 leading-relaxed">
-            Frontend Developer with full-spectrum IT skills across systems, support, and software.
+            Information Systems student blending business understanding with technical execution. I focus on frontend development, digital systems, and practical IT operations—allowing me to contribute to both the user-facing experience and the underlying infrastructure that supports it.
           </p>
           <p className="text-sm text-slate-300 leading-relaxed">
-            I design and build clean, responsive web interfaces and contribute to production systems
-            used by real users. My background in IT support, networking, and system operations gives
-            me a practical, end-to-end view of how technology is deployed, maintained, and improved.
+            I build responsive, user-focused web interfaces while also supporting the IT systems and business processes behind them. Because of my background in IT support, networking, and system operations, I understand how digital solutions behave in real organizational environments—from infrastructure, performance, and security considerations to the workflow and business impact. This combination of business insight and technical ability allows me to design solutions that not only work smoothly for end-users, but also strengthen efficiency, streamline processes, and support broader organizational goals. My approach is to bridge the gap between business requirements and technology implementation to deliver systems that provide real value.
           </p>
           <div className="flex flex-wrap gap-3 pt-2">
             <button
@@ -151,15 +150,18 @@ function Hero() {
             </button>
           </div>
         </div>
-
         <motion.div
           initial={{ opacity: 0, scale: 0.9, x: 20 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="w-full md:w-60"
         >
-          <div className="relative aspect-square rounded-3xl border border-slate-800 bg-gradient-to-br from-sky-500/10 via-slate-900 to-purple-500/10 flex items-center justify-center">
-            <span className="text-5xl">👨‍💻</span>
+          <div className="relative aspect-square rounded-3xl border border-slate-800 bg-gradient-to-br from-sky-500/10 via-slate-900 to-purple-500/10 flex items-center justify-center overflow-hidden">
+            <img 
+              src={dpImage} 
+              alt="Georgy Moni" 
+              className="w-full h-full object-cover"
+            />
             <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-slate-900/90 border border-slate-700 text-xs text-slate-200">
               Frontend Developer
             </div>
@@ -186,16 +188,10 @@ function About() {
   return (
     <SectionWrapper id="about" title="About Me">
       <p className="text-slate-300 leading-relaxed">
-        I am a Bachelor of Information Systems (Computer Information Systems) student at the
-        University of Botswana. I have practical experience building production-grade frontends and
-        supporting technical environments. My focus is on writing reliable, maintainable code and
-        delivering interfaces that are clear, efficient, and aligned with user needs.
+        I am a Bachelor of Information Systems (Computer Information Systems) student at the University of Botswana. My work spans frontend web development, IT support, and business-oriented systems analysis. I enjoy designing solutions that are clean, efficient, and aligned with the operational realities of organizations.
       </p>
       <p className="text-slate-300 leading-relaxed">
-        Combining frontend development with IT support experience allows me to understand how
-        applications behave in real environments—from networks and servers up to the browser. I am
-        intentional about continuous improvement, professional standards, and learning modern tools
-        in the web ecosystem.
+        My combined experience in development and IT operations gives me a unique perspective on how systems function end-to-end—from user interface behavior and API communication to networks, servers, and business workflows. With this background, I focus on building solutions that are reliable in practice, mindful of business needs, and maintainable in the long term.
       </p>
     </SectionWrapper>
   );
@@ -408,7 +404,7 @@ function BeyondTech() {
         <Tag>💪 Bodybuilding</Tag>
         <Tag>✝️ Christ Embassy</Tag>
         <Tag>🎤 Interviewing inspiring people</Tag>
-        <Tag>🖥️ PC building</Tag>
+        <Tag>🖥️ PC building</Tag> 
         <Tag>🎮 Gaming</Tag>
         <Tag>📚 Reading</Tag>
         <Tag>🎧 Music</Tag>
