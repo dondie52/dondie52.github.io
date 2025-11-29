@@ -407,6 +407,65 @@ Visit: https://dondie52.github.io
 
 ---
 
+### November 2025 - Beyond Tech Interactive Gallery & Slideshow
+
+- **New Feature:** Clickable interest tags that open modal slideshows with photos/videos
+- **Updated Tags:** Changed from static display to interactive buttons:
+  - 💪 Bodybuilding → Opens gallery with gym photos + workout video
+  - 🐱 Cats → Opens gallery with cat photo
+  - 🎤 Interviewing inspiring people → Opens gallery with interview photo
+  - 🖥️ PC building → Opens gallery with PC photos + build video
+  - 🎵 Music → Opens gallery with music/piano photos
+  - 📚 Reading → Opens gallery with books photo
+  - 🤝 Friends → Opens gallery with friends video
+  - 💡 Entrepreneurship mindset → Opens special "Share your idea" CTA modal with email link
+- **MediaModal Component:** New component in `src/sections/BeyondTech.jsx`:
+  - Animated modal with Framer Motion (fade + scale)
+  - Image/video slideshow with prev/next navigation
+  - Dot indicators for multi-item galleries
+  - Click-outside-to-close functionality
+  - Special entrepreneurship modal with email CTA
+- **Updated Files:**
+  - `src/sections/BeyondTech.jsx` - Added MediaModal component and gallery state management
+  - `src/components/Tag.jsx` - Added onClick support, conditional button/span rendering
+  - `src/data/content.js` - Added `beyondTechGalleries` config object and `galleryKey` to tags
+- **Media Assets:** Added `public/pictures/` folder with:
+  - `gym.jpeg`, `gym2.mp4`, `me_up_kagle_hill.jpeg` (Bodybuilding)
+  - `cat_pic.jpeg` (Cats)
+  - `interviewing.jpeg` (Interviewing)
+  - `pc.jpeg`, `pc_build_2.mp4` (PC building)
+  - `music.jpeg`, `pinao.jpeg` (Music)
+  - `books.jpeg` (Reading)
+  - `friends.mp4` (Friends)
+- **Easy Extensibility:** To add/remove media, simply edit `beyondTechGalleries` in `src/data/content.js` – no JSX changes needed
+
+### November 2025 - Gallery & Contact Form Fixes
+
+- **Video Abort Error Fix:** Fixed `DOMException: The fetching process for the media resource was aborted` error:
+  - Added `useRef` to track video elements
+  - Properly pause and clear video source when closing modal or switching slides
+  - Added cleanup in `useEffect` hooks to prevent memory leaks
+  - Videos now pause before navigation/close to prevent abort errors
+  - Added `AnimatePresence` for smoother modal transitions
+  - Added Escape key handler to close modal
+- **"Need a Website?" CTA Added:** New prominent call-to-action card in Contact section:
+  - Eye-catching gradient card with sky-blue theme
+  - Globe icon and "Let's Talk" button
+  - Pre-filled email template for website inquiries
+  - Positioned at top of contact info column for maximum visibility
+  - Includes decorative gradient orb background effect
+- **Contact Form Email Fix:** Fixed contact form to actually send emails:
+  - Changed from fake success message to opening email client
+  - Form data now pre-fills email subject and body
+  - Uses `mailto:` protocol to open user's default email app
+  - Includes sender name and email in message body
+  - Clear instructions that form opens email app
+- **Updated Files:**
+  - `src/sections/BeyondTech.jsx` - Added video cleanup, refs, and improved modal handling
+  - `src/sections/Contact.jsx` - Added "Need a Website?" CTA card and fixed form submission
+
+---
+
 ## Summary
 
 The portfolio has been completely rebuilt with:

@@ -164,18 +164,63 @@ export const education = [
 ];
 
 export const beyondTechText = [
-  "Outside of software and systems, I am committed to disciplined personal development. I practise bodybuilding, with a focus on strength, structure, and consistency. I attend Christ Embassy, where I stay grounded in my values and community.",
-  "I also interview inspiring individuals in Botswana, giving them space to share their journeys and lessons. In my free time I build PCs, game, read, and listen to music, while maintaining an entrepreneurial mindset and interest in new opportunities.",
+  "Outside of software and systems, I am committed to disciplined personal development. I practise bodybuilding, with a focus on strength, structure, and consistency. I attend church, stay grounded in my values, and invest in relationships and community.",
+  "I also interview inspiring individuals in Botswana, giving them space to share their journeys and lessons. In my free time I build PCs, experiment with music, read, and spend time with friends, while maintaining an entrepreneurial mindset and interest in new opportunities.",
 ];
 
 export const beyondTechTags = [
-  { emoji: "💪", label: "Bodybuilding" },
-  { emoji: "✝️", label: "Christ Embassy" },
-  { emoji: "🎤", label: "Interviewing inspiring people" },
-  { emoji: "🖥️", label: "PC building" },
-  { emoji: "🎮", label: "Gaming" },
-  { emoji: "📚", label: "Reading" },
-  { emoji: "🎧", label: "Music" },
-  { emoji: "💡", label: "Entrepreneurship mindset" },
+  { emoji: "💪", label: "Bodybuilding", galleryKey: "bodybuilding" },
+  { emoji: "🐱", label: "Cats", galleryKey: "cats" },
+  { emoji: "🎤", label: "Interviewing inspiring people", galleryKey: "interviewing" },
+  { emoji: "🖥️", label: "PC building", galleryKey: "pcBuilding" },
+  { emoji: "🎵", label: "Music", galleryKey: "music" },
+  { emoji: "📚", label: "Reading", galleryKey: "reading" },
+  { emoji: "🤝", label: "Friends", galleryKey: "friends" },
+  { emoji: "💡", label: "Entrepreneurship mindset", galleryKey: "entrepreneurship" },
 ];
+
+export const beyondTechGalleries = {
+  bodybuilding: {
+    title: "Bodybuilding",
+    items: [
+      { type: "image", src: "/pictures/gym.jpeg" },
+      { type: "video", src: "/pictures/gym2.mp4" },
+      { type: "image", src: "/pictures/me_up_kagle_hill.jpeg" },
+    ],
+  },
+  cats: {
+    title: "Cats",
+    items: [{ type: "image", src: "/pictures/cat_pic.jpeg" }],
+  },
+  interviewing: {
+    title: "Interviewing inspiring people",
+    items: [{ type: "image", src: "/pictures/interviewing.jpeg" }],
+  },
+  pcBuilding: {
+    title: "PC building",
+    items: [
+      { type: "image", src: "/pictures/pc.jpeg" },
+      { type: "video", src: "/pictures/pc_build_2.mp4" },
+    ],
+  },
+  music: {
+    title: "Music",
+    items: [
+      { type: "image", src: "/pictures/music.jpeg" },
+      { type: "image", src: "/pictures/pinao.jpeg" },
+    ],
+  },
+  reading: {
+    title: "Reading",
+    items: [{ type: "image", src: "/pictures/books.jpeg" }],
+  },
+  friends: {
+    title: "Friends",
+    items: [{ type: "video", src: "/pictures/friends.mp4" }],
+  },
+  entrepreneurship: {
+    title: "Entrepreneurship mindset",
+    items: [], // no media yet – using this for "share your idea" modal
+  },
+};
 
