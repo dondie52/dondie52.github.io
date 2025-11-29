@@ -305,6 +305,25 @@ Visit: https://dondie52.github.io
 
 ## Recent Updates
 
+### November 2025 - Services Section Added
+
+- **New Section:** Added a dedicated "Services" section showcasing 6 service offerings
+- **New File:** Created `src/sections/Services.jsx`
+- **Service Cards:** Each card includes:
+  - Lucide icons (`Monitor`, `Layers`, `Code`, `Wrench`, `HardDrive`, `Headphones`)
+  - Fade-up animation on scroll with staggered delays (0.05s per card)
+  - Hover effects: `scale(1.02)` + `shadow-sky-500/20`
+  - Sky-blue accent color theme for differentiation
+- **Services Offered:**
+  1. Web Design & Development
+  2. Custom Application Development
+  3. Programming & Software Development
+  4. Computer Repairs & Software Installations
+  5. Data Backup & Recovery
+  6. IT Support
+- **Placement:** Section appears between Experience and Projects
+- **Styling:** Matches existing card styles with `rounded-xl`, `border-slate-800`, `bg-slate-900/60`, `backdrop-blur-sm`
+
 ### December 2025 - Hero Section Layout Fix
 
 - **Fixed container structure:** Consolidated all Hero content into a single parent flex container
