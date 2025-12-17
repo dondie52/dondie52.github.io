@@ -102,49 +102,39 @@ export const experiences = [
 
 export const projects = [
   {
-    title: "Hospital Information System – Princess Marina",
-    period: "2025",
-    description:
-      "A structured analysis and design mini-project for a hospital information system, including context diagrams, DFDs, ERDs, use cases, process modelling and full system documentation.",
-    tech: ["Systems Analysis", "DFD", "ERD", "UML", "Research"],
-    link: "/project/hospital-info-system",
-    icon: "Building2",
+    title: "CRLTARTL Project",
+    description: "Creating a futuristic bank app for FNB Botswana with custom UI & digital experiences.",
+    tech: ["Flutter", "Dart", "Firebase", "UI/UX"],
+    link: "https://github.com/dondie52/crltartl-project",
+    icon: "CreditCard",
   },
   {
-    title: "Decision Support System – Smartphone Retail Shop",
-    period: "2025",
-    description:
-      "A DSS that helps managers of a smartphone retail shop make structured decisions based on weighted scoring, criteria analysis, and performance evaluation.",
-    tech: ["Java", "Decision Support Systems", "AHP", "Weighted Scoring"],
-    link: "/project/dss-retail",
+    title: "Learning Flutter and Dart",
+    description: "A repository for learning and documenting lessons in Flutter and Dart development.",
+    tech: ["Dart", "Flutter"],
+    link: "https://github.com/dondie52/learning-flutter-and-dart",
+    icon: "BookOpen",
+  },
+  {
+    title: "DSS System 2025",
+    description: "Decision Support System for a smartphone retail shop—helps managers make structured decisions using weighted scoring and criteria analysis.",
+    tech: ["Java", "Decision Support", "CLI"],
+    link: "https://github.com/dondie52/dss-system-2025",
     icon: "Brain",
   },
   {
-    title: "Student Device Management Portal",
-    period: "2025",
-    description:
-      "A web system for tracking student laptop agents, sales, and inventory across tertiary institutions in Botswana. Created to improve transparency and operational reporting.",
-    tech: ["React", "Firebase", "Tailwind CSS"],
-    link: "/project/device-portal",
-    icon: "Laptop",
-  },
-  {
-    title: "Trading System (Java)",
-    period: "2025",
-    description:
-      "A console-based trading simulation system for handling transactions, users, and basic portfolio functions.",
-    tech: ["Java", "OOP", "File Handling"],
+    title: "Trading System",
+    description: "A console-based simulation of a trading environment: portfolios, users, and transaction logic, built for academic use.",
+    tech: ["Java", "OOP", "File I/O"],
     link: "https://github.com/dondie52/trading-system",
     icon: "TrendingUp",
   },
   {
-    title: "Research Paper – WhatsApp for Academic Collaboration",
-    period: "2025",
-    description:
-      "A full undergraduate research project exploring how UB final-year students use WhatsApp for collaboration, covering data collection, analysis, literature review, and recommendations.",
-    tech: ["Research", "SPSS", "Survey Design"],
-    link: "/project/whatsapp-research",
-    icon: "FileText",
+    title: "AgriConnect Web MVP",
+    description: "A digital marketplace MVP for smallholder farmers—features listings, matching, and info, built with React, Node, and PostgreSQL.",
+    tech: ["React", "Node.js", "PostgreSQL"],
+    link: "https://github.com/dondie52/agriconnect-web-mvp",
+    icon: "Leaf",
   },
 ];
 
@@ -223,4 +213,3 @@ export const beyondTechGalleries = {
     items: [], // no media yet – using this for "share your idea" modal
   },
 };
-
