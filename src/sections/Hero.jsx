@@ -1,6 +1,7 @@
 import { motion, useMotionValue, useTransform, useSpring, useReducedMotion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useRef, useState } from "react";
+import HeroAIChat from "../components/HeroAIChat";
 import dpImage from "../assets/dp.jpeg";
 
 const scrollToId = (id) => {
@@ -156,7 +157,7 @@ function PremiumAvatar() {
           style={{ transform: "translateZ(40px)" }}
         >
           <span className="text-sm font-medium bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-            Frontend Dev
+            Full-Stack AI Builder
           </span>
         </motion.div>
       </motion.div>
@@ -237,7 +238,7 @@ export default function Hero() {
               transition={{ delay: 0.5, duration: 0.6 }}
               className="text-xl sm:text-2xl text-slate-300 font-medium max-w-xl mx-auto lg:mx-0"
             >
-              Frontend Developer with Full-Spectrum IT Skills Across Systems, Support & Software
+              Full-Stack Developer & AI Solutions Builder
             </motion.p>
 
             {/* Description */}
@@ -245,12 +246,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="text-slate-400 leading-relaxed max-w-lg mx-auto lg:mx-0"
+              className="text-slate-400 leading-relaxed max-w-xl mx-auto lg:mx-0"
             >
-              I design and build clean, responsive web interfaces and contribute to production
-              systems used by real users. My background in IT support, networking, and system
-              operations gives me a practical, end-to-end view of how technology is deployed and
-              improved.
+              I build full-stack web applications, business automation tools, and AI-powered digital
+              systems for real-world users. Through BOKAS Technologies, I create modern websites,
+              software tools, and AI-driven solutions that help businesses work faster, look
+              professional, and serve customers better.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -279,8 +280,16 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Premium Avatar with interactive effects */}
-        <PremiumAvatar />
+        {/* Premium Avatar and AI chat card */}
+        <motion.div
+          initial={{ opacity: 0, x: shouldReduceMotion ? 0 : 28 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.25, duration: 0.7 }}
+          className="flex w-full flex-1 flex-col items-center gap-8 lg:min-h-[640px] lg:justify-center"
+        >
+          <PremiumAvatar />
+          <HeroAIChat />
+        </motion.div>
       </motion.div>
     </section>
   );
