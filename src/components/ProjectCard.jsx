@@ -39,7 +39,9 @@ export default function ProjectCard({ project, index }) {
         </div>
 
         {/* Description */}
-        <p className="text-sm text-slate-400 leading-relaxed mb-5">{project.description}</p>
+        <p className="text-sm text-slate-400 leading-relaxed mb-5 [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical] overflow-hidden">
+          {project.description}
+        </p>
 
         {/* Tech Stack */}
         {Array.isArray(project.tech) && project.tech.length > 0 ? (
@@ -105,4 +107,3 @@ export default function ProjectCard({ project, index }) {
     </motion.article>
   );
 }
-

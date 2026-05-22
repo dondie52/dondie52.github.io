@@ -68,9 +68,19 @@ export default function ProjectsIndexPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 antialiased">
+      <a
+        href="#content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-lg focus:bg-slate-900 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-slate-100 focus:ring-2 focus:ring-emerald-500/60"
+      >
+        Skip to content
+      </a>
       <PageHeader title="Projects" subtitle="Auto-synced from GitHub" backHref="/" backLabel="Home" />
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 space-y-10">
+      <main
+        id="content"
+        tabIndex={-1}
+        className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 space-y-10"
+      >
         <motion.section
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
@@ -142,18 +152,24 @@ export default function ProjectsIndexPage() {
             ))}
           </div>
 
-          <div className="mt-8 text-xs text-slate-500 flex items-center gap-2">
-            <Star size={14} className="text-emerald-400" />
-            <span>
-              Tip: add the GitHub topic{" "}
-              <span className="text-slate-300 font-medium">portfolio-featured</span> to pin projects to the homepage.
-            </span>
-          </div>
-
-          <div className="mt-3 text-xs text-slate-600">
-            Want deeper case studies? Add a markdown file in{" "}
-            <code className="text-slate-400">src/content/case-studies/&lt;slug&gt;.md</code>.
-          </div>
+          <details className="mt-8 rounded-2xl border border-slate-800/50 bg-slate-950/40 p-5 text-sm">
+            <summary className="cursor-pointer select-none text-slate-200 font-medium">
+              Portfolio sync notes
+            </summary>
+            <div className="mt-3 space-y-2 text-xs text-slate-400">
+              <div className="flex items-start gap-2">
+                <Star size={14} className="mt-0.5 text-emerald-400 flex-shrink-0" />
+                <span>
+                  Add the GitHub topic <span className="text-slate-200 font-medium">portfolio-featured</span> to pin
+                  projects to the homepage.
+                </span>
+              </div>
+              <div>
+                Want deeper case studies? Add a markdown file in{" "}
+                <code className="text-slate-300">src/content/case-studies/&lt;slug&gt;.md</code>.
+              </div>
+            </div>
+          </details>
         </motion.section>
 
         <div className="text-sm text-slate-400">
@@ -168,4 +184,3 @@ export default function ProjectsIndexPage() {
     </div>
   );
 }
-

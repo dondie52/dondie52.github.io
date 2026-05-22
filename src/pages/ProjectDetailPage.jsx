@@ -132,9 +132,15 @@ export default function ProjectDetailPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 antialiased">
+      <a
+        href="#content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-lg focus:bg-slate-900 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-slate-100 focus:ring-2 focus:ring-emerald-500/60"
+      >
+        Skip to content
+      </a>
       <PageHeader title="Project" subtitle={project.displayName || project.name} backHref="/projects" backLabel="All projects" />
 
-      <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-24 pb-20">
+      <main id="content" tabIndex={-1} className="max-w-3xl mx-auto px-4 sm:px-6 pt-24 pb-20">
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
           <h1 className="text-3xl sm:text-4xl font-bold text-slate-50">{project.displayName || project.name}</h1>
           {project.description ? <p className="mt-3 text-slate-300 leading-relaxed">{project.description}</p> : null}
