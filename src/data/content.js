@@ -15,6 +15,7 @@ export const navSections = [
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
+  { id: "services", label: "Services" },
   { id: "projects", label: "Projects" },
   { id: "education", label: "Education" },
   { id: "beyond-tech", label: "Beyond Tech" },
@@ -187,4 +188,3 @@ export const beyondTechGalleries = {
     items: [], // no media yet – using this for "share your idea" modal
   },
 };
-

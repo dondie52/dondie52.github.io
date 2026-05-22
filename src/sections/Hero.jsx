@@ -1,15 +1,20 @@
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring, useReducedMotion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useRef, useState } from "react";
 import dpImage from "../assets/dp.jpeg";
 
 const scrollToId = (id) => {
   const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (!el) return;
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+  el.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
 };
 
 // Premium Avatar Component with interactive effects
 function PremiumAvatar() {
+  const shouldReduceMotion = useReducedMotion();
   const containerRef = useRef(null);
   const [isHovering, setIsHovering] = useState(false);
   
@@ -81,12 +86,12 @@ function PremiumAvatar() {
       {/* Main avatar container with 3D tilt */}
       <motion.div
         ref={containerRef}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovering(true)}
+        onMouseMove={shouldReduceMotion ? undefined : handleMouseMove}
+        onMouseEnter={shouldReduceMotion ? undefined : () => setIsHovering(true)}
         onMouseLeave={handleMouseLeave}
         style={{
-          rotateX,
-          rotateY,
+          rotateX: shouldReduceMotion ? 0 : rotateX,
+          rotateY: shouldReduceMotion ? 0 : rotateY,
           transformStyle: "preserve-3d",
         }}
         className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 gpu-accelerate"
@@ -107,7 +112,9 @@ function PremiumAvatar() {
           <motion.div
             className="absolute inset-0 pointer-events-none"
             animate={{
-              background: isHovering 
+              background: shouldReduceMotion
+                ? 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 50%)'
+                : isHovering 
                 ? `radial-gradient(circle at ${glassPosition.x}% ${glassPosition.y}%, rgba(255,255,255,0.15) 0%, transparent 50%)`
                 : 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 50%)'
             }}
@@ -133,8 +140,8 @@ function PremiumAvatar() {
 
         {/* Floating sparkle element */}
         <motion.div
-          animate={{ y: [-5, 5, -5] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          animate={shouldReduceMotion ? undefined : { y: [-5, 5, -5] }}
+          transition={shouldReduceMotion ? undefined : { duration: 3, repeat: Infinity, ease: "easeInOut" }}
           className="absolute -top-4 -right-4 p-3 rounded-xl bg-slate-900/90 border border-cyan-500/30 shadow-lg shadow-cyan-500/20 backdrop-blur-sm"
           style={{ transform: "translateZ(40px)" }}
         >
@@ -143,8 +150,8 @@ function PremiumAvatar() {
 
         {/* Floating label */}
         <motion.div
-          animate={{ y: [5, -5, 5] }}
-          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+          animate={shouldReduceMotion ? undefined : { y: [5, -5, 5] }}
+          transition={shouldReduceMotion ? undefined : { duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
           className="absolute -bottom-4 -left-4 px-4 py-2 rounded-xl bg-slate-900/90 border border-purple-500/30 shadow-lg shadow-purple-500/20 backdrop-blur-sm"
           style={{ transform: "translateZ(40px)" }}
         >
@@ -158,6 +165,8 @@ function PremiumAvatar() {
 }
 
 export default function Hero() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section id="top" className="pt-0 relative min-h-[90vh]">
       {/* Animated background gradients */}
@@ -172,21 +181,21 @@ export default function Hero() {
 
       {/* Main Hero Content - Single Flex Container */}
       <motion.div
-        initial={{ opacity: 0, y: 18 }}
+        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="relative flex flex-col lg:flex-row items-center gap-12 lg:gap-16 min-h-[90vh] w-full"
       >
         {/* Text Content */}
         <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="flex-1 space-y-6 text-center lg:text-left"
           >
             {/* Status badge */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm"
@@ -201,7 +210,7 @@ export default function Hero() {
             {/* Main heading */}
             <div className="space-y-3">
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
                 className="text-slate-400 text-lg"
@@ -209,7 +218,7 @@ export default function Hero() {
                 Hi, I'm
               </motion.p>
               <motion.h1
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
                 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight"
@@ -223,7 +232,7 @@ export default function Hero() {
 
             {/* Tagline */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
               className="text-xl sm:text-2xl text-slate-300 font-medium max-w-xl mx-auto lg:mx-0"
@@ -233,7 +242,7 @@ export default function Hero() {
 
             {/* Description */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
               className="text-slate-400 leading-relaxed max-w-lg mx-auto lg:mx-0"
@@ -246,7 +255,7 @@ export default function Hero() {
 
             {/* CTA Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.6 }}
               className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4"

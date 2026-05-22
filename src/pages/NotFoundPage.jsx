@@ -4,7 +4,13 @@ import { motion } from "framer-motion";
 export default function NotFoundPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <a
+        href="#content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-lg focus:bg-slate-900 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-slate-100 focus:ring-2 focus:ring-emerald-500/60"
+      >
+        Skip to content
+      </a>
+      <main id="content" tabIndex={-1} className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -32,4 +38,3 @@ export default function NotFoundPage() {
     </div>
   );
 }
-
