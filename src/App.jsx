@@ -12,11 +12,9 @@ import Education from "./sections/Education";
 import BeyondTech from "./sections/BeyondTech";
 import Contact from "./sections/Contact";
 
-// Project detail pages
-import HospitalInfoSystem from "./project-pages/HospitalInfoSystem";
-import DSSRetail from "./project-pages/DSSRetail";
-import DevicePortal from "./project-pages/DevicePortal";
-import WhatsAppResearch from "./project-pages/WhatsAppResearch";
+import ProjectsIndexPage from "./pages/ProjectsIndexPage";
+import ProjectDetailPage from "./pages/ProjectDetailPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function HomePage() {
   return (
@@ -45,10 +43,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/project/hospital-info-system" element={<HospitalInfoSystem />} />
-      <Route path="/project/dss-retail" element={<DSSRetail />} />
-      <Route path="/project/device-portal" element={<DevicePortal />} />
-      <Route path="/project/whatsapp-research" element={<WhatsAppResearch />} />
+      <Route path="/projects" element={<ProjectsIndexPage />} />
+      <Route path="/projects/:slug" element={<ProjectDetailPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }
