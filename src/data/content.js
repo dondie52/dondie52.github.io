@@ -2,12 +2,13 @@
 
 export const personalInfo = {
   name: "Georgy Moni",
-  tagline: "Frontend Developer with Full-Spectrum IT Skills Across Systems, Support & Software",
+  tagline:
+    "Frontend Developer with Full-Spectrum IT Skills Across Systems, Support & Software",
   location: "Gaborone, Botswana",
   email: "monigeorgy42@gmail.com",
   phone: "+267 76 984 827",
   github: "https://github.com/dondie52",
-  linkedin: "https://linkedin.com/in/georgymoni",
+  linkedin: "https://www.linkedin.com/in/georgy-moni-a6976a264",
 };
 
 export const navSections = [
@@ -21,7 +22,7 @@ export const navSections = [
 ];
 
 export const aboutText = [
-  "I am a Bachelor of Information Systems (Computer Information Systems) student at the University of Botswana. I have practical experience building production-grade frontends and supporting technical environments. My focus is on writing reliable, maintainable code and delivering interfaces that are clear, efficient, and aligned with user needs.",
+  'I am a Bachelor of Information Systems (Computer Information Systems) student at the University of Botswana. I have practical experience building production-grade frontends and supporting technical environments. My focus is on writing reliable, maintainable code and delivering interfaces that are clear, efficient, and aligned with user needs.',
   "Combining frontend development with IT support experience allows me to understand how applications behave in real environments—from networks and servers up to the browser. I am intentional about continuous improvement, professional standards, and learning modern tools in the web ecosystem.",
 ];
 
@@ -47,12 +48,23 @@ export const skills = {
   backend: {
     title: "Backend & APIs",
     icon: "Server",
-    items: ["Node.js (Express)", "REST API integration", "WebSockets / real-time updates"],
+    items: [
+      "Node.js (Express)",
+      "REST API integration",
+      "WebSockets / real-time updates",
+    ],
   },
   tools: {
     title: "Tools & Platforms",
     icon: "Wrench",
-    items: ["Git & GitHub", "Linux (Ubuntu / Mint)", "Supabase", "Firebase", "VS Code", "Postman"],
+    items: [
+      "Git & GitHub",
+      "Linux (Ubuntu / Mint)",
+      "Supabase",
+      "Firebase",
+      "VS Code",
+      "Postman",
+    ],
   },
   itSupport: {
     title: "IT Support & Systems",
@@ -97,44 +109,6 @@ export const experiences = [
       "Supported network installations and structured cabling activities.",
       "Documented incidents and resolutions to improve internal support processes.",
     ],
-  },
-];
-
-export const projects = [
-  {
-    title: "CRLTARTL Project",
-    description: "Creating a futuristic bank app for FNB Botswana with custom UI & digital experiences.",
-    tech: ["Flutter", "Dart", "Firebase", "UI/UX"],
-    link: "https://github.com/dondie52/crltartl-project",
-    icon: "CreditCard",
-  },
-  {
-    title: "Learning Flutter and Dart",
-    description: "A repository for learning and documenting lessons in Flutter and Dart development.",
-    tech: ["Dart", "Flutter"],
-    link: "https://github.com/dondie52/learning-flutter-and-dart",
-    icon: "BookOpen",
-  },
-  {
-    title: "DSS System 2025",
-    description: "Decision Support System for a smartphone retail shop—helps managers make structured decisions using weighted scoring and criteria analysis.",
-    tech: ["Java", "Decision Support", "CLI"],
-    link: "https://github.com/dondie52/dss-system-2025",
-    icon: "Brain",
-  },
-  {
-    title: "Trading System",
-    description: "A console-based simulation of a trading environment: portfolios, users, and transaction logic, built for academic use.",
-    tech: ["Java", "OOP", "File I/O"],
-    link: "https://github.com/dondie52/trading-system",
-    icon: "TrendingUp",
-  },
-  {
-    title: "AgriConnect Web MVP",
-    description: "A digital marketplace MVP for smallholder farmers—features listings, matching, and info, built with React, Node, and PostgreSQL.",
-    tech: ["React", "Node.js", "PostgreSQL"],
-    link: "https://github.com/dondie52/agriconnect-web-mvp",
-    icon: "Leaf",
   },
 ];
 
@@ -213,3 +187,4 @@ export const beyondTechGalleries = {
     items: [], // no media yet – using this for "share your idea" modal
   },
 };
+
