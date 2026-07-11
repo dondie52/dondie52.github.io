@@ -43,7 +43,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_AI_API_URL: ${{ vars.VITE_AI_API_URL }}
+          VITE_AI_API_URL: ${{ vars.VITE_AI_API_URL || 'https://georgy-portfolio-ai-api.onrender.com/api/ask-georgy' }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

@@ -17,8 +17,11 @@ const initialMessages = [
   },
 ];
 
+const DEFAULT_AI_API_URL =
+  "https://georgy-portfolio-ai-api.onrender.com/api/ask-georgy";
+
 const getApiEndpoint = () =>
-  (import.meta.env.VITE_AI_API_URL || "/api/ask-georgy").trim();
+  (import.meta.env.VITE_AI_API_URL || DEFAULT_AI_API_URL).trim();
 
 const getHistory = (messages) =>
   messages
@@ -63,11 +66,25 @@ export default function HeroAIChat() {
         }),
       });
 
-      const payload = await response.json().catch(() => ({}));
+      const contentType = response.headers.get("content-type") || "";
+      const payload = contentType.includes("application/json")
+        ? await response.json().catch(() => ({}))
+        : {};
 
       if (!response.ok || !payload.answer) {
         const serverError = typeof payload.error === "string" ? payload.error : "";
-        throw new Error(serverError || "The AI service could not answer right now.");
+
+        if (serverError) {
+          throw new Error(serverError);
+        }
+
+        if (response.status === 404 || response.status === 405) {
+          throw new Error(
+            "The AI assistant API is not reachable yet. Please try again in a moment."
+          );
+        }
+
+        throw new Error("The AI service could not answer right now.");
       }
 
       setMessages((current) => [
