@@ -5,7 +5,7 @@ import helmet from "helmet";
 
 const app = express();
 const port = process.env.PORT || 3001;
-const model = process.env.OPENAI_MODEL || "gpt-5.5";
+const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 const allowedOrigins = parseAllowedOrigins(process.env.ALLOWED_ORIGINS);
 
 const MAX_MESSAGE_LENGTH = 500;
@@ -18,8 +18,8 @@ const requestCounts = new Map();
 const rateLimitSalt = process.env.RATE_LIMIT_SALT || "georgy-portfolio-ai-api";
 
 const blockedPromptPatterns = [
-  /\b(reveal|show|print|display|send|tell|provide|leak|expose|dump)\b.*\b(api\s*[-_ ]?\s*key|openai\s*[-_ ]?\s*key|secret|token|credential|password)s?\b/i,
-  /\b(api\s*[-_ ]?\s*key|openai\s*[-_ ]?\s*key|secret|token|credential|password)s?\b.*\b(reveal|show|print|display|send|tell|provide|leak|expose|dump)\b/i,
+  /\b(reveal|show|print|display|send|tell|provide|leak|expose|dump)\b.*\b(api\s*[-_ ]?\s*key|openai\s*[-_ ]?\s*key|gemini\s*[-_ ]?\s*key|google\s*[-_ ]?\s*key|secret|token|credential|password)s?\b/i,
+  /\b(api\s*[-_ ]?\s*key|openai\s*[-_ ]?\s*key|gemini\s*[-_ ]?\s*key|google\s*[-_ ]?\s*key|secret|token|credential|password)s?\b.*\b(reveal|show|print|display|send|tell|provide|leak|expose|dump)\b/i,
   /\b(system|developer)\s+(prompt|message|instruction)s?\b/i,
   /\bhidden\s+instruction/i,
   /\bignore\s+(all\s+)?(previous|above|earlier)\s+instructions?\b/i,
@@ -81,7 +81,7 @@ app.get("/health", (_req, res) => {
 });
 
 app.post("/api/ask-georgy", rateLimitMiddleware, async (req, res) => {
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
 
   if (!apiKey) {
     return res.status(503).json({
@@ -110,31 +110,33 @@ app.post("/api/ask-georgy", rateLimitMiddleware, async (req, res) => {
   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
   try {
-    const openAiResponse = await fetch("https://api.openai.com/v1/responses", {
-      method: "POST",
-      signal: controller.signal,
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model,
-        reasoning: { effort: "low" },
-        text: { verbosity: "low" },
-        max_output_tokens: 220,
-        input: [
-          { role: "developer", content: assistantInstructions },
-          ...history,
-          { role: "user", content: message },
-        ],
-      }),
-    });
+    const geminiResponse = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+      {
+        method: "POST",
+        signal: controller.signal,
+        headers: {
+          "x-goog-api-key": apiKey,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          system_instruction: {
+            parts: [{ text: assistantInstructions }],
+          },
+          contents: toGeminiContents(history, message),
+          generationConfig: {
+            maxOutputTokens: 220,
+            temperature: 0.7,
+          },
+        }),
+      }
+    );
 
-    const payload = await openAiResponse.json().catch(() => ({}));
+    const payload = await geminiResponse.json().catch(() => ({}));
 
-    if (!openAiResponse.ok) {
-      console.error("OpenAI request failed", {
-        status: openAiResponse.status,
+    if (!geminiResponse.ok) {
+      console.error("Gemini request failed", {
+        status: geminiResponse.status,
         message: payload?.error?.message,
       });
 
@@ -143,7 +145,7 @@ app.post("/api/ask-georgy", rateLimitMiddleware, async (req, res) => {
       });
     }
 
-    const answer = sanitizeAssistantAnswer(extractOutputText(payload));
+    const answer = sanitizeAssistantAnswer(extractGeminiText(payload));
 
     if (!answer) {
       return res.status(502).json({
@@ -315,17 +317,28 @@ function sanitizeAssistantAnswer(value) {
   return answer;
 }
 
-function extractOutputText(payload) {
-  if (typeof payload?.output_text === "string") {
-    return payload.output_text.trim();
-  }
+function toGeminiContents(history, message) {
+  const contents = history.map((item) => ({
+    role: item.role === "assistant" ? "model" : "user",
+    parts: [{ text: item.content }],
+  }));
 
-  if (!Array.isArray(payload?.output)) return "";
+  contents.push({
+    role: "user",
+    parts: [{ text: message }],
+  });
 
-  return payload.output
-    .flatMap((item) => item?.content || [])
-    .filter((content) => content?.type === "output_text" && content?.text)
-    .map((content) => content.text)
+  return contents;
+}
+
+function extractGeminiText(payload) {
+  const parts = payload?.candidates?.[0]?.content?.parts;
+
+  if (!Array.isArray(parts)) return "";
+
+  return parts
+    .map((part) => (typeof part?.text === "string" ? part.text : ""))
+    .filter(Boolean)
     .join("\n")
     .trim();
 }

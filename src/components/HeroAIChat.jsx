@@ -18,7 +18,7 @@ const initialMessages = [
 ];
 
 const DEFAULT_AI_API_URL =
-  "https://georgy-portfolio-ai-api.onrender.com/api/ask-georgy";
+  "https://dondie52-github-io.onrender.com/api/ask-georgy";
 
 const getApiEndpoint = () =>
   (import.meta.env.VITE_AI_API_URL || DEFAULT_AI_API_URL).trim();

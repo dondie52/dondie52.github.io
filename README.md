@@ -20,7 +20,7 @@ cp .env.example .env
 npm run dev
 ```
 
-Set `OPENAI_API_KEY` in `server/.env` before testing live AI responses. For local frontend calls, set this in the root `.env` file:
+Set `GEMINI_API_KEY` in `server/.env` before testing live AI responses. For local frontend calls, set this in the root `.env` file:
 
 ```bash
 VITE_AI_API_URL=http://localhost:3001/api/ask-georgy
@@ -28,9 +28,9 @@ VITE_AI_API_URL=http://localhost:3001/api/ask-georgy
 
 ## AI Hero Chat Setup
 
-The homepage hero chat card calls the API URL from `VITE_AI_API_URL`. If that variable is not set, it falls back to `https://georgy-portfolio-ai-api.onrender.com/api/ask-georgy`.
+The homepage hero chat card calls the API URL from `VITE_AI_API_URL`. If that variable is not set, it falls back to `https://dondie52-github-io.onrender.com/api/ask-georgy`.
 
-Never put `OPENAI_API_KEY` in a Vite/frontend environment variable. Vite variables are bundled into browser code when they start with `VITE_`.
+Never put `GEMINI_API_KEY` in a Vite/frontend environment variable. Vite variables are bundled into browser code when they start with `VITE_`.
 
 ## AI API Security
 
@@ -41,7 +41,7 @@ The AI API is designed so the browser never sees private credentials. Security c
 - JSON-only requests with a small body limit
 - per-IP rate limiting with hashed rate-limit keys
 - prompt-injection and secret-exfiltration prefilters
-- short OpenAI request timeout and bounded assistant responses
+- short Gemini request timeout and bounded assistant responses
 - Helmet security headers and `Cache-Control: no-store`
 - generic production errors that do not expose provider details
 
@@ -61,13 +61,13 @@ Deploy the `server/` folder as a Render web service.
 Required Render environment variable:
 
 ```bash
-OPENAI_API_KEY=your_openai_api_key
+GEMINI_API_KEY=your_gemini_api_key
 ```
 
 Recommended Render environment variables:
 
 ```bash
-OPENAI_MODEL=gpt-5.5
+GEMINI_MODEL=gemini-2.5-flash
 ALLOWED_ORIGINS=https://dondie52.github.io,http://localhost:5173
 RATE_LIMIT_SALT=a_long_random_string
 ```
@@ -83,7 +83,16 @@ Health Check Path: /health
 
 ## GitHub Pages Deployment
 
-Keep `OPENAI_API_KEY` out of GitHub Pages. After deploying the Render service, add this GitHub repository variable:
+GitHub Pages must publish the **built `dist/` output**, not the repo root. This workflow deploys the Vite build to the `gh-pages` branch.
+
+In GitHub → **Settings → Pages**, set:
+
+- **Source:** Deploy from a branch
+- **Branch:** `gh-pages` / `(root)`
+
+If the site shows a blank white page, the Pages source is usually pointed at `main` instead of `gh-pages`. After merging, run the **Deploy to GitHub Pages** workflow (or push to `main`) and confirm the setting above.
+
+Keep `GEMINI_API_KEY` out of GitHub Pages. After deploying the Render service, you can optionally add this GitHub repository variable:
 
 ```bash
 VITE_AI_API_URL=https://your-render-service.onrender.com/api/ask-georgy

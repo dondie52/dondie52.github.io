@@ -8,10 +8,12 @@ services:
     startCommand: npm start
     healthCheckPath: /health
     envVars:
-      - key: OPENAI_API_KEY
+      - key: GEMINI_API_KEY
         sync: false
-      - key: OPENAI_MODEL
-        value: gpt-5.5
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
       - key: ALLOWED_ORIGINS
         value: https://dondie52.github.io,http://localhost:5173
       - key: RATE_LIMIT_SALT
