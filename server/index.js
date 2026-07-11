@@ -167,7 +167,7 @@ app.use((_req, res) => {
   res.status(404).json({ error: "Not found" });
 });
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`Georgy portfolio AI API running on port ${port}`);
 });
 

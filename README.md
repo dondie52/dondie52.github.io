@@ -28,7 +28,7 @@ VITE_AI_API_URL=http://localhost:3001/api/ask-georgy
 
 ## AI Hero Chat Setup
 
-The homepage hero chat card calls the API URL from `VITE_AI_API_URL`. If that variable is not set, it falls back to `/api/ask-georgy` for same-origin deployments.
+The homepage hero chat card calls the API URL from `VITE_AI_API_URL`. If that variable is not set, it falls back to `https://georgy-portfolio-ai-api.onrender.com/api/ask-georgy`.
 
 Never put `OPENAI_API_KEY` in a Vite/frontend environment variable. Vite variables are bundled into browser code when they start with `VITE_`.
 
