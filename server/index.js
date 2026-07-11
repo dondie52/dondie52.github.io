@@ -81,7 +81,7 @@ app.get("/health", (_req, res) => {
 });
 
 app.post("/api/ask-georgy", rateLimitMiddleware, async (req, res) => {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
 
   if (!apiKey) {
     return res.status(503).json({

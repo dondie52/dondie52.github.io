@@ -28,7 +28,7 @@ VITE_AI_API_URL=http://localhost:3001/api/ask-georgy
 
 ## AI Hero Chat Setup
 
-The homepage hero chat card calls the API URL from `VITE_AI_API_URL`. If that variable is not set, it falls back to `https://georgy-portfolio-ai-api.onrender.com/api/ask-georgy`.
+The homepage hero chat card calls the API URL from `VITE_AI_API_URL`. If that variable is not set, it falls back to `https://dondie52-github-io.onrender.com/api/ask-georgy`.
 
 Never put `GEMINI_API_KEY` in a Vite/frontend environment variable. Vite variables are bundled into browser code when they start with `VITE_`.
 
@@ -83,7 +83,16 @@ Health Check Path: /health
 
 ## GitHub Pages Deployment
 
-Keep `GEMINI_API_KEY` out of GitHub Pages. After deploying the Render service, add this GitHub repository variable:
+GitHub Pages must publish the **built `dist/` output**, not the repo root. This workflow deploys the Vite build to the `gh-pages` branch.
+
+In GitHub → **Settings → Pages**, set:
+
+- **Source:** Deploy from a branch
+- **Branch:** `gh-pages` / `(root)`
+
+If the site shows a blank white page, the Pages source is usually pointed at `main` instead of `gh-pages`. After merging, run the **Deploy to GitHub Pages** workflow (or push to `main`) and confirm the setting above.
+
+Keep `GEMINI_API_KEY` out of GitHub Pages. After deploying the Render service, you can optionally add this GitHub repository variable:
 
 ```bash
 VITE_AI_API_URL=https://your-render-service.onrender.com/api/ask-georgy
